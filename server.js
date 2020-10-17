@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import pusher from 'pusher'
 import cors from 'cors'
 
-import  mongoose from './mongoData.js'
+import  mongoData from './mongoData.js'
 
 // app config
 const app = express();
@@ -25,12 +25,15 @@ mongoose.connect(mongoURI, {
   useUnifiedTopology: true
 })
 
-mongoose.connect.once('open', () => {
+mongoose.connection.once('open', () =>{
   console.log('DB Connected')
 })
 
 // api routes
 app.get('/', (req,res) => res.status(200).send('Hello From Squidux! 🦑 '))
+
+// create new conversation
+
 
 
 // listen
