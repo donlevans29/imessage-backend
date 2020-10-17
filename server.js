@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import pusher from 'pusher'
 import cors from 'cors'
 
+import  mongoose from './mongoData.js'
 
 // app config
 const app = express();
@@ -16,7 +17,17 @@ app.use(express.json())
 
 
 // db config
+const mongoURI ='mongodb+srv://admin:0qkJ7d2A7L21gKBy@cluster0.nialt.mongodb.net/imessageDB?retryWrites=true&w=majority'
 
+mongoose.connect(mongoURI, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+
+mongoose.connect.once('open', () => {
+  console.log('DB Connected')
+})
 
 // api routes
 app.get('/', (req,res) => res.status(200).send('Hello From Squidux! 🦑 '))
