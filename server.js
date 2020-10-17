@@ -33,7 +33,18 @@ mongoose.connection.once('open', () =>{
 app.get('/', (req,res) => res.status(200).send('Hello From Squidux! 🦑 '))
 
 // create new conversation
+app.post('/new/conversation', (req, res) => {
+  const dbData = req.body
 
+    mongoData.create(dbData,(err,data) => {
+      if (err) {
+          res.status(500).send(err)
+      } else {
+          res.status(201).send(data)  // created in server language
+      }
+    })
+
+})
 
 
 // listen
